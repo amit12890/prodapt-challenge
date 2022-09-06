@@ -1,0 +1,108 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    namespace 'com.challange.weatherapp'
+    compileSdk 32
+
+    defaultConfig {
+        applicationId "com.challange.weatherapp"
+        minSdk 21
+        targetSdk 32
+        versionCode 100001
+        versionName "1.0.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            buildConfigField "String", "BASE_URL", "\"https://api.openweathermap.org/\""
+            buildConfigField "String", "API_KEY", "\"92087dc744ead273e64e7f6eb8f2cb8f\""
+            buildConfigField "String", "GOOGLE_API_KEY", "\"AIzaSyAJfn9o80zFACEmdFyh0X8myDTpsuu9GLk\""
+        }
+        release {
+            minifyEnabled false
+            buildConfigField "String", "BASE_URL", "\"https://api.openweathermap.org/\""
+            buildConfigField "String", "API_KEY", "\"92087dc744ead273e64e7f6eb8f2cb8f\""
+            buildConfigField "String", "GOOGLE_API_KEY", "\"AIzaSyAJfn9o80zFACEmdFyh0X8myDTpsuu9GLk\""
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    dataBinding {
+        enabled = true
+    }
+    buildFeatures {
+        viewBinding true
+    }
+
+}
+
+kapt {
+    generateStubs = true
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.appcompat:appcompat:1.5.0'
+    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    kapt "com.android.databinding:compiler:3.1.4"
+
+    //Dagger - Hilt
+    implementation "com.google.dagger:hilt-android:2.43.2"
+    implementation 'androidx.hilt:hilt-navigation-compose:1.0.0'
+    kapt 'com.google.dagger:hilt-compiler:2.43.2'
+    kapt "androidx.hilt:hilt-compiler:1.0.0"
+
+    // Activity KTX for viewModels()
+    implementation "androidx.activity:activity-ktx:1.5.1"
+
+    // Architectural Components
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
+
+    // Lifecycle
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.5.1"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.5.1"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.5.1"
+
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation "com.squareup.okhttp3:okhttp:4.9.3"
+
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.13.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
+
+    // Coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+
+    // Coroutine Lifecycle Scopes
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.5.1"
+
+    // string utils
+    api 'org.apache.commons:commons-lang3:3.8'
+
+    //SDP
+    implementation 'com.intuit.sdp:sdp-android:1.0.5'
+
+
+}
